@@ -1,0 +1,100 @@
+.note {
+  height: 100vh;
+  width: 100vw;
+  background-color: $primary;
+  padding: $gutterwidth;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  &__item {
+    width: 25%;
+    height: 35%;
+    background: $compcolor;
+    margin-right: $gutterwidth;
+    cursor: pointer;
+
+    &__title {
+      font-family: $basefont;
+      font-size: fs(normal);
+      color: $black;
+      text-align: center;
+      background-color: $compcolor;
+      border-bottom: solid 10px $primary;
+      padding: $baselineheight;
+    }
+
+    &__description {
+      @extend %center;
+      width: 95%;
+      padding: $baselineheight;
+      font-family: $basefont;
+      background-color: $compcolor;
+      color: $black;
+      text-align: left;
+      font-size: fs(small);
+    }
+
+    &__category,
+    &__priority {
+      @extend %center;
+      width: 60%;
+      font-family: $altfont;
+      color: $black;
+      font-size: fs(small);
+      text-align: left;
+      padding: $baselineheight;
+      margin-top: 10px;
+      font-weight: bold;
+      border-radius: $radius;
+      border: dotted 1px #000;
+
+      span {
+        font-weight: lighter;
+      }
+    }
+
+    &__date {
+      padding: 0.5rem;
+      margin-top: 1rem;
+      font-family: $altfont;
+      font-size: fs(small);
+      color: $black;
+      
+      &--start,
+      &--end{
+          margin-bottom: $baselineheight;
+          font-weight: bold;
+          border-bottom: dashed 1px #000;
+
+          span{
+              font-weight: lighter;
+          }
+      }
+    }
+
+    &__delete{
+      text-align: right;
+      padding: $baselineheight;
+      background-color: $compcolor;
+    }
+  }
+  
+  .btn-delete{
+    width: 30px;
+    height: 40px;
+    background-color: transparent;
+    border: solid 1px $color-error;
+    opacity: .7;
+
+    &:hover{
+      opacity: 1;
+    }
+
+    i{
+      font-size: fs(normal);
+      color: $color-error;
+    }
+
+  }
+}

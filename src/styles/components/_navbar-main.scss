@@ -1,0 +1,30 @@
+.navbar {
+  width: 100%;
+  text-align: left;
+  background-color: $compcolor;
+
+  ul {
+    background-color: #fff;
+    padding: $baselineheight;
+  }
+
+  li {
+    display: inline-block;
+
+    &::after {
+      content: "|";
+      font-size: fs(normal);
+      font-weight: bold;
+      opacity: .7;
+    }
+  
+  }
+
+  &__link {
+    margin-top: 10px;
+    padding: $baselineheight;
+    font-size: fs(normal);
+    font-family: $basefont;
+    opacity: .7;
+  }
+}

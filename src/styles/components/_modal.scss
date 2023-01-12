@@ -1,0 +1,138 @@
+/* Modal */
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 999;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal__window {
+  display: block;
+  width: 600px;
+  background-color: $primary;
+  padding: 1.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px $grey;
+
+  h1 {
+    font-size: fs(normal);
+    font-family: $basefont;
+    color: $black;
+    padding: $baselineheight;
+    border-bottom: dashed 2px $black;
+  }
+
+  label {
+    display: block;
+    margin-top: $baselineheight;
+    padding-bottom: $baselineheight;
+    padding-left: 10px;
+    font-size: fs(small) * 1.25;
+    color: $black;
+    font-weight: bold;
+    font-family: $altfont;
+  }
+
+  &--form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: $baselineheight;
+    padding: $baselineheight;
+  }
+
+  &--date-picker,
+  &--category,
+  &--priority {
+    width: 50%;
+    background-color: $compcolor;
+    padding: $baselineheight * 1.1;
+    margin-top: $baselineheight;
+    margin-right: $baselineheight;
+    border-radius: 5px;
+    //border: 1px solid $compcolor;
+    position: relative;
+
+    &-input{
+      width: 90%;
+      padding: $baselineheight;
+      font-family: $basefont;
+      font-size: fs(small) * 1.1;
+      border-radius: 5px;
+      border: none;
+    }
+  }
+    
+    &--title,
+    &--notes{
+      width: 100%;
+    
+
+    &-input{
+        width: 95%;
+        padding: $baselineheight;
+        font-family: $basefont;
+        font-size: fs(small) * 1.1;
+        border-radius: 5px;
+        border: none;
+    }
+
+  }
+
+
+  &--color{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    text-align: right;
+    margin-top: $baselineheight;
+    padding: $baselineheight;
+    
+    input{
+      height: 25px;
+      width: 25px;
+
+    }
+  }
+
+  &--btn{
+      margin-top: $gutterwidth;
+      padding: $baselineheight;
+      background-color: $compcolor;
+      font-family: $basefont;
+      text-align: left;
+      padding-left: $gutterwidth;
+      font-size: fs(small) * 1.2;
+      color: $black;
+      opacity: .7;
+      border-radius: 10px;
+
+      span{
+        margin-left: 10px;
+      }
+      
+      &:hover{
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+      }
+  }
+
+}

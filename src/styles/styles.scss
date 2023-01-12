@@ -1,0 +1,18 @@
+// Theme
+@import "./theme/vars";
+@import "./theme/base";
+
+// Config
+@import "./config/functions";
+@import "./config/mixins";
+@import "./config/placehoders";
+
+// Layout
+@import "./layout/main";
+
+// components
+@import "./components/modal";
+@import "./components/buttons";
+@import "./components/note";
+@import "./components/navbar-main";
+@import "./components/menu-cat";

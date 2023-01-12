@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    $PLACEHOLDERS
+\*------------------------------------*/
+/**
+* content center
+**/
+
+%center {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/**
+  * Clear floats.
+  * http://bit.ly/1e3YaBH
+  */
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

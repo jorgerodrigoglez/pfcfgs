@@ -1,0 +1,21 @@
+.btn-plus{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: $gutterwidth;
+    right: $gutterwidth;
+    background-color: $compcolor;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    
+    i{
+        font-size: fs(huge);
+        font-weight: bold;
+        color: $black;
+
+    }
+
+}

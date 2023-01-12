@@ -1,0 +1,17 @@
+.menu{
+    width: 100%;
+    padding: $baselineheight;
+    border-bottom: dashed 2px $compcolor;
+    text-align: left;
+
+    &__item{
+        display: inline-block;
+        width: auto;
+        font-size: fs(normal);
+        font-family: $basefont;
+        padding: $baselineheight;
+        margin-right: $baselineheight;
+        background-color: $compcolor;
+        cursor: pointer;
+    }
+}

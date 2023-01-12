@@ -1,0 +1,141 @@
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+/**
+ * "Start with the small screen first, then expand until it looks like shit. Time to insert a breakpoint!"
+ * Lo usamos con el mixin respond-to($breakpoint):
+
+.text {
+  color: pink;
+  @include respond-to(medium) {
+    color: maroon;
+  }
+}
+ *
+ */
+
+ $breakpoints: (
+  'x-small'  : 20em, //320px
+  'small'  : 37.5em, //600px
+  'medium'  : 48em, //768px
+  'large' : 56.25em,//900px
+  'x-large'  : 75em,//1200px
+) !default;
+
+/*------------------------------------*\
+    $LAYOUT
+\*------------------------------------*/
+/**
+ * Definimos elementos constantes del layout
+ */
+ $baselineheight :     .5em;
+ $baseline :           $baselineheight;
+ $gutterwidth :        24px;
+ $pagemaxwidth :       860px;
+ $radius :             10px;
+ $hovertransition :    .3s;
+ $animationtime :      .8s;
+ 
+ /*------------------------------------*\
+     $grid
+ \*------------------------------------*/
+ $gap : 5px;
+ $grid-size: 3;
+ 
+ /*------------------------------------*\
+     $FONT-FACE
+ \*------------------------------------*/
+ /**
+  * Definimos las fuentes a utilizar:
+  * $basefont para todos los textos inline
+  * $altfont para textos alternativos, como citas, intro, etc...
+  * $codefont para código
+  */
+ //$mainfont : 'Architects Daughter', cursive;
+ $basefont : 'Roboto Slab', serif;
+ $altfont : 'Nanum Gothic', sans-serif;
+ $codefont : "Courier New", monospace;
+ $baseheadingfont : $altfont;
+ 
+ $baseheadingfontweight : normal;
+ $baseheadingfontcolor : inherit;
+ 
+ $altlineheight : 1.35em;
+ 
+ /*------------------------------------*\
+     $TAMAÑOS
+ \*------------------------------------*/
+ /**
+  * Definimos los tamaños de fuentes:
+ 
+  */
+ $basefontsize   :   16; 
+ 
+ /*
+  * Las variables de tamaño las definimos en un MAP, puedes añadir, quitar o cambiarlas.
+  * Vienen dadas en REM. Esto creará una clase con el mismo nombre de la variable:
+ 
+   .x-small { font-size: .8rem}
+ 
+  * También podemos asignar tamaños con un función llamada fs:
+ 
+     .selector { font-size: fs(x-small);}
+ 
+  *
+  */
+$size-vars: (
+   "xx-small" :    .6,
+   "x-small"  :    .8,
+   "small"    :    1,
+   "normal"   :    1.5,
+   "big"      :    2,
+   "huge"     :    3
+ );
+ 
+ /*------------------------------------*\
+     $COLORS
+ \*------------------------------------*/
+ /**
+  * Brand stuff
+  */
+ 
+ // colors
+ $primary: rgb(255,164,30);
+ $compcolor: rgb(0,255,62); 
+ $light: rgb(255,255,255);
+ $compcolor-light: lighten($compcolor, 10%);
+
+// google btn
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669f2;
+
+/**
+ * Escala de grises
+ * A veces no queremos que el negro sea "negro" o el blanco "blanco", puedes cambiarlos.
+ */
+ $black          : rgb(0,0,0);
+ $darkergrey     : lighten($black, 20%);
+ $darkgrey       : lighten($black, 30%);
+ $grey           : lighten($black, 45%);
+ $lightgrey      : lighten($black, 75%);
+ $lightergrey    : lighten($black, 90%);
+ $white          : rgb(255,255,255);
+ 
+ // Web
+ $background:        $lightergrey;
+ $textcolor:         #494949;
+ $textcolor-strong:  $black;
+
+/*------------------------------------*\
+    $TEXTURAS
+\*------------------------------------*/
+/**
+ * Definimos Colores y elementos de popups, mensajes de alerta, etc...
+ */
+ $color-alert  : rgb(252,228,207);
+ $color-error  : rgb(218,79,73);
+ $color-info   : rgb(66, 184, 221);
+ $color-inverse  : invert($compcolor);
+ $color-success  : rgb(91,183,91);
+ $color-warning  : rgb(231,135,48);

@@ -1,0 +1,11 @@
+/*
+ * Función para mantener el tamaño de fuente consistente
+
+ .selector { font-size: fs(x-small);}
+
+ * Puedes ver en settings.scss las variables que se utilizan.
+ */
+
+@function fs($font-size) {
+  @return map-get($size-vars, $font-size) * 1rem;
+}
