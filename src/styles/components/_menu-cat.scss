@@ -13,5 +13,9 @@
         margin-right: $baselineheight;
         background-color: $compcolor;
         cursor: pointer;
+
+        input{
+            background-color:$compcolor;
+        }
     }
 }
