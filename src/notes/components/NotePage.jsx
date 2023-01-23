@@ -14,7 +14,7 @@ export const NotePage = ({
   priority,
   color,
   stateNote,
-  onOpenModal,
+  onOpenModal
 }) => {
   //console.log({ _id, title, description, start, end, category, priority, color });
   //console.log(state);
@@ -25,6 +25,7 @@ export const NotePage = ({
 
   // redux
   const dispatch = useDispatch();
+
   // hook
   const { startDeletingNote } = useNotesStore();
 
@@ -55,17 +56,22 @@ export const NotePage = ({
   };
 
   return (
-    <div className="note__item" style={{ display:(stateNote) ? '' : 'none' }} >
-
-      <div onClick={onClickNote} style={{ backgroundColor: color }}>
-        <h1 className="note__item__title">{title}</h1>
-        <p className="note__item__description">Descripción: {description}</p>
+    <div
+      className="note__item"
+      style={{ display: stateNote ? "" : "none" }}
+    >
+      <div style={{ backgroundColor: color }}>
         <div className="note__item__category">
-          <span>Categoria:</span> {category}
+          <span>{category}</span>
+        </div>
+        <div className="note__item__body">
+          <h1 className="note__item__title">{title}</h1>
+          <p className="note__item__description">{description}</p>
         </div>
         <div className="note__item__priority">
           <span>Prioridad:</span> {priority}
         </div>
+
         <div className="note__item__date">
           <div className="note__item__date--start">
             <span>De:</span> {dateStart}
@@ -75,8 +81,10 @@ export const NotePage = ({
           </div>
         </div>
       </div>
-      
-      <div className="note__item__delete">
+      <div className="note__item__delete" style={{ backgroundColor: color }}>
+        <button className="btn-edit" onClick={onClickNote}>
+          <i className="fa-solid fa-pen"></i>
+        </button>
         <button className="btn-delete" onClick={deleteNote}>
           <i className="fa-solid fa-trash"></i>
         </button>

@@ -3,6 +3,7 @@
 }
 
 .main__layout{
+    //height: 1100px; // Cambiar para añadir más notas
     background-color: $primary;
 }
 
@@ -17,8 +18,8 @@ a.active{
     opacity: 1;
 }
 
-.align-right{
-    text-align: right;
+.align-center{
+    text-align: center;
 }
 
 .is-invalid{

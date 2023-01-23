@@ -1,22 +1,18 @@
-
-
-export const catNotRep = (notes = [] ) => {
-
+export const catNotRep = (notes = []) => {
+  
   // creacion de categorias
-  const categoriesMenu = [];
-  // creacion de array
+  const categoriesColor = [];
+  // creacion de array categorias
   notes.forEach(note => {
-    categoriesMenu.push(note.category);
+    categoriesColor.push(note.category);
   });
 
-  /*categories.forEach(cat => {
-    categoriesMenu.push(cat);
-  })*/
+  //console.log(categoriesColor);
 
-  //console.log(categoriesMenu);
-  // Eliminalos los repetidos
-  const noRep = new Set(categoriesMenu);
-  const newCategories = [...noRep];
-  //console.log(newCategories);
-  return newCategories;
+  // Eliminalos los repetidos categorias
+  const noRepCat = new Set(categoriesColor);
+  const newCategoriesColor = [...noRepCat];
+  //console.log(newCategoriesColor);
+
+  return newCategoriesColor;
 };

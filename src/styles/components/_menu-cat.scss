@@ -1,21 +1,23 @@
 .menu{
     width: 100%;
     padding: $baselineheight;
-    border-bottom: dashed 2px $compcolor;
+    border-bottom: dashed 1px $compcolor;
     text-align: left;
 
     &__item{
         display: inline-block;
         width: auto;
-        font-size: fs(normal);
+        font-size: fs(small) * 1.25;
         font-family: $basefont;
         padding: $baselineheight;
         margin-right: $baselineheight;
-        background-color: $compcolor;
+        background-color: transparent;
         cursor: pointer;
-
+        border-radius: 20px;
+        
         input{
-            background-color:$compcolor;
+            padding: 5px;
+            background-color: transparent;
         }
     }
 }

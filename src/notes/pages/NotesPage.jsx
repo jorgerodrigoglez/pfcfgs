@@ -1,21 +1,19 @@
-//import { useState, useEffect } from 'react';
+//import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { ModalNotes, NotePage } from "../components";
 import { useUiStore, useNotesStore } from "../../hooks";
 import { NothingSelected } from "./NothingSelected";
-import { onFilterNoteCat } from "../../store";
+import { onFilterNoteCat, onListAllNotes } from "../../store";
 import { MenuCat } from "../../notes/components";
 
-
 export const NotesPage = () => {
-  
+
   // redux
   const dispatch = useDispatch();
 
   // hooks
   const { openModal } = useUiStore();
   const { notes } = useNotesStore();
-
 
   const onOpenModal = () => {
     openModal();
@@ -29,14 +27,21 @@ export const NotesPage = () => {
     const currentCategory = target.value;
     //console.log(currentCategory);
     dispatch(onFilterNoteCat(currentCategory));
+  };
 
+  // listar todas las categorias
+  const allListCategories = () => {
+    dispatch(onListAllNotes(notes));
   };
 
   return (
     <>
-      <ModalNotes />
+      <ModalNotes/>
 
-      <MenuCat filterNotesCat={filterNotesCat} />
+      <MenuCat
+        filterNotesCat={filterNotesCat}
+        allListCategories={allListCategories}
+      />
 
       {notes.length === 0 ? (
         <NothingSelected />

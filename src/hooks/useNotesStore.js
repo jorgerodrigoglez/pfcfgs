@@ -3,7 +3,7 @@ import { onAddNewNote, onUpdateNote, onSetActiveNote, onDeleteNote } from "../st
 
 export const useNotesStore = () => {
   const dispatch = useDispatch();
-  const { notes, activeNote, categories } = useSelector(state => state.notes);
+  const { notes, activeNote, categories, colors } = useSelector(state => state.notes);
 
   // activar nota -- este evento es para el calendario
   const setActiveEvent = ( event ) => {
@@ -33,6 +33,7 @@ export const useNotesStore = () => {
     notes,
     activeNote,
     categories,
+    colors,
     // metodos
     startSavingNote,
     setActiveEvent,

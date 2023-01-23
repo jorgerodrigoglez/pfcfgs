@@ -4,12 +4,12 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: $gutterwidth * 3.5;
-    right: $gutterwidth;
+    top: 54px;
+    right: 10px;
     background-color: $compcolor;
     height: 80px;
     width: 80px;
-    border-radius: 50%;
+    //border-radius: 50%;
     
     i{
         font-size: fs(huge);

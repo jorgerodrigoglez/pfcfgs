@@ -7,8 +7,8 @@ const tempNotes = {
   description: "",
   start: new Date(),
   end: addHours(new Date(), 2),
-  category: "sin categoría",
-  color: "",
+  category: "",
+  color: "#8000FF",
   priority: "Sin prioridad",
   stateNote: true
 };
@@ -21,6 +21,7 @@ export const notesSlice = createSlice({
     ],
     activeNote: null,
     categories: [],
+    //colors: []
   },
   reducers: {
     onSetActiveNote: (state, { payload }) => {
@@ -30,7 +31,10 @@ export const notesSlice = createSlice({
       state.notes.push(payload);
       state.activeNote = null;
       state.categories.push(payload.category);
+      // colorProject - Category
+      //state.colorProjects.push(payload.color);
     },
+
     onUpdateNote: (state, { payload }) => {
       state.notes = state.notes.map(note => {
         if (note._id === payload._id) {
@@ -55,21 +59,31 @@ export const notesSlice = createSlice({
           }
       })*/
     },
+    // elimina repetidos
+    /*onColor: (state, { payload }) => {
+      //console.log(payload);
+      state.colors = payload;
+    },*/
     onFilterNoteCat: (state, { payload }) => {
       //console.log(payload);
-      if(state.categories.includes(payload)){
-        state.notes = state.notes.map( note => {
-          if(note.category === payload){
+      if (state.categories.includes(payload)) {
+        state.notes = state.notes.map(note => {
+          if (note.category === payload) {
             note.stateNote = true;
             return note;
-          }else{
+          } else {
             note.stateNote = false;
             return note;
           }
-    
-        })
+        });
       }
     },
+    onListAllNotes: (state, { payload }) => {
+      state.notes = state.notes.map(note => {
+        note.stateNote = true;
+        return note;
+      });
+    }
   }
 });
 
@@ -79,5 +93,7 @@ export const {
   onUpdateNote,
   onDeleteNote,
   onCat,
+  onColor,
   onFilterNoteCat,
+  onListAllNotes
 } = notesSlice.actions;

@@ -1,5 +1,5 @@
 .note {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   background-color: $primary;
   padding: $gutterwidth;
@@ -7,20 +7,20 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-
+  
   &__item {
     width: 20%;
     height: 40%;
-    background: $compcolor;
+    margin-top: $gutterwidth;
     margin-right: $gutterwidth;
-    cursor: pointer;
+    //background: $compcolor;
 
-    &__title {
+    &__category {
       font-family: $basefont;
       font-size: fs(normal);
       color: $black;
       text-align: center;
-      background-color: $compcolor;
+      //background-color: $compcolor;
       border-bottom: solid 10px $primary;
       padding: $baselineheight;
     }
@@ -30,62 +30,85 @@
       width: 95%;
       padding: $baselineheight;
       font-family: $basefont;
-      background-color: $compcolor;
+      //background-color: $compcolor;
       color: $black;
+      margin-left: $baselineheight;
       text-align: left;
       font-size: fs(small);
+      opacity: .7;
     }
 
-    &__category,
-    &__priority {
-      @extend %center;
-      width: 60%;
+    &__title{
+      //@extend %center;
+      //width: 60%;
       font-family: $altfont;
       color: $black;
-      font-size: fs(small);
+      font-size: fs(small) * 1.2;
       text-align: left;
+      margin-left: $baselineheight;
       padding: $baselineheight;
       margin-top: 10px;
       font-weight: bold;
       border-radius: $radius;
-      border: dotted 1px #000;
+      //border: dotted 1px #000;
 
       span {
         font-weight: lighter;
       }
     }
 
+    &__priority {
+      margin-top: $baselineheight;
+      padding: $baselineheight;
+      padding-left: $baselineheight * 2;
+      font-family: $altfont;
+      color: $black;
+      font-size: fs(small) * 1.1;
+      background-color: $compcolor;
+      //border: solid 1px $black;
+
+      span{
+        font-weight: bold;
+      }
+    }
+
     &__date {
-      padding: 0.5rem;
-      margin-top: 1rem;
+      text-align: center;
+      padding: $baselineheight;
       font-family: $altfont;
       font-size: fs(small);
+      //background-color: $color-error;
       color: $black;
+      border: solid 5px $compcolor;
       
       &--start,
       &--end{
-          margin-bottom: $baselineheight;
-          font-weight: bold;
-          border-bottom: dashed 1px #000;
+        padding: $baselineheight;
+        margin-bottom: $baselineheight;
+        font-weight: bold;
+        border-bottom: dashed 2px $compcolor;
 
-          span{
-              font-weight: lighter;
-          }
+        span{
+            font-weight: lighter;
+        }
       }
     }
 
     &__delete{
       text-align: right;
+      display: flex;
+      justify-content: space-between;
       padding: $baselineheight;
-      background-color: $compcolor;
+      background-color: $primary;
+      border-top: solid 3px $primary;
     }
   }
   
-  .btn-delete{
+  .btn-delete,
+  .btn-edit{
     width: 30px;
     height: 40px;
-    background-color: transparent;
-    border: solid 1px $color-error;
+    //background-color: $primary;
     opacity: .7;
 
     &:hover{
@@ -94,7 +117,8 @@
 
     i{
       font-size: fs(normal);
-      color: $color-error;
+      opacity: .6;
+      color: $black;
     }
 
   }
