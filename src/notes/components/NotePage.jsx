@@ -1,10 +1,12 @@
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { onSetActiveNote, onEditFormat } from "../../store";
+import { onSetActiveNote, onEditFormat, onComplete } from "../../store";
 
 import { format } from "date-fns";
 import { useNotesStore } from "../../hooks";
 
 export const NotePage = ({
+  note,
   _id,
   title,
   description,
@@ -14,10 +16,13 @@ export const NotePage = ({
   priority,
   color,
   stateNote,
+  complete,
   onOpenModal
 }) => {
   //console.log({ _id, title, description, start, end, category, priority, color });
   //console.log(state);
+  //console.log(complete);
+  //console.log(note);
   const dateStart = format(start, "eee : dd/MM/yy- hh:mm aaa");
   //console.log(dateStart);
   const dateEnd = format(end, "eee : dd/MM/yy- hh:mm aaa");
@@ -29,7 +34,7 @@ export const NotePage = ({
   // hook
   const { startDeletingNote } = useNotesStore();
 
-  const onClickNote = () => {
+  const onEditNote = () => {
     dispatch(
       onSetActiveNote({
         _id,
@@ -55,19 +60,37 @@ export const NotePage = ({
     startDeletingNote(_id);
   };
 
+  // mostrar u ocultar completadas
+  const completeTask = e => {
+    //console.log(_id,complete,note);
+    e.preventDefault();
+    // crea el objeto y cambia su valor
+    const newComplete = {
+      ...note,
+      complete: !note.complete
+    };
+
+    dispatch(onComplete(newComplete));
+  };
+
   return (
-    <div
-      className="note__item"
-      style={{ display: stateNote ? "" : "none" }}
-    >
+    <li className="note__item" style={{ display: stateNote ? "" : "none" }}>
+      <div className="note__item__check" onClick={completeTask}>
+        <p htmlFor="checkComplete">
+          {complete ? "Completada" : "No Completada"}
+        </p>
+      </div>
+
       <div style={{ backgroundColor: color }}>
         <div className="note__item__category">
           <span>{category}</span>
         </div>
+
         <div className="note__item__body">
           <h1 className="note__item__title">{title}</h1>
           <p className="note__item__description">{description}</p>
         </div>
+
         <div className="note__item__priority">
           <span>Prioridad:</span> {priority}
         </div>
@@ -81,14 +104,15 @@ export const NotePage = ({
           </div>
         </div>
       </div>
+
       <div className="note__item__delete" style={{ backgroundColor: color }}>
-        <button className="btn-edit" onClick={onClickNote}>
+        <button className="btn-edit" onClick={onEditNote}>
           <i className="fa-solid fa-pen"></i>
         </button>
         <button className="btn-delete" onClick={deleteNote}>
           <i className="fa-solid fa-trash"></i>
         </button>
       </div>
-    </div>
+    </li>
   );
 };

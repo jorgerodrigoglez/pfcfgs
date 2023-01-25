@@ -15,6 +15,24 @@
     margin-right: $gutterwidth;
     //background: $compcolor;
 
+    &__check{
+      text-align: center;
+      padding: $baselineheight;
+      background-color: #fff;
+      cursor: pointer;
+
+      label{
+        font-family: $basefont;
+        font-size: fs(small);
+      }
+
+      input{
+        height: 20px;
+        width: 20px;
+        background-color: $color-info;
+      }
+    }
+
     &__category {
       font-family: $basefont;
       font-size: fs(normal);
@@ -123,3 +141,5 @@
 
   }
 }
+
+

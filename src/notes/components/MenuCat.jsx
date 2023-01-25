@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { catNotRep, notesNoRep } from "../../helpers";
-import { onCat } from "../../store";
+import { notesNoRep } from "../../helpers";
+//import { onCat } from "../../store";
 import { useNotesStore } from "../../hooks";
+import { onListComplete } from "../../store";
 
 export const MenuCat = ({ filterNotesCat, allListCategories }) => {
+  // cambiar el boton de completadas
+  const [btnChangeTasks, setBtnChangeTasks] = useState(false);
   // redux
   const dispatch = useDispatch();
   // hook
@@ -13,15 +16,15 @@ export const MenuCat = ({ filterNotesCat, allListCategories }) => {
 
   // helpers : crea el array de categorias y elimina elementos repetidos
   //console.log(colorItemCat);
-  const inCategories = catNotRep(notes);
+  //const inCategories = catNotRep(notes);
 
   // color categorias
   //const inColors = colorCat(notes);
 
   // introduce nuevas categorias en el store sin repeticion
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(onCat(inCategories));
-  }, [notes]);
+  }, [notes]);*/
   // introduce nuevos colores en el store sin repeticion
   /*useEffect(() => {
     //setColorsCat(inColors);
@@ -29,7 +32,8 @@ export const MenuCat = ({ filterNotesCat, allListCategories }) => {
   }, [notes]);*/
 
   // elimina las notas repetidas por color y categorias
-  const categoriesMap = notesNoRep(notes);
+  let categoriesMap = notesNoRep(notes);
+
   //console.log(categoriesMap);
 
   let deleteRep = categoriesMap.filter((value1, index, array) => {
@@ -42,19 +46,55 @@ export const MenuCat = ({ filterNotesCat, allListCategories }) => {
   });
   //console.log(deleteRep);
 
+  // listar completadas
+  const showTasksComplete = e => {
+    e.preventDefault();
+    setBtnChangeTasks(!btnChangeTasks);
+
+    if (btnChangeTasks) {
+      dispatch(onListComplete(btnChangeTasks));
+    } else {
+      dispatch(onListComplete(btnChangeTasks));
+    }
+  };
+
   return (
     <>
       <div className="menu">
         <div className="menu__item">
-          <button onClick={allListCategories} className="menu__item">
+          <button onClick={allListCategories} className="menu__item--all">
             All
           </button>
+
+          <input
+            type="button"
+            onClick={showTasksComplete}
+            className="menu__item--complete"
+            //value={btnChangeTasks ? "No Completadas" : "Completadas"}
+            value="No completadas"
+          />
+
+          <input
+            type="button"
+            onClick={showTasksComplete}
+            className="menu__item--complete"
+            //value={btnChangeTasks ? "No Completadas" : "Completadas"}
+            value="Completadas"
+          />
+
+          <input
+            type="button"
+            className="menu__item--priority"
+            //value={btnChangeTasks ? "No Completadas" : "Completadas"}
+            value="Prioridad"
+          />
+
           {categories &&
             categories.length > 0 &&
             deleteRep.map(cat => (
               <menu
                 key={uuidv4()}
-                className="menu__item"
+                className="menu__item--categories"
                 onClick={filterNotesCat}
                 style={{ backgroundColor: cat.col }}
               >

@@ -1,23 +1,34 @@
-.menu{
-    width: 100%;
-    padding: $baselineheight;
-    border-bottom: dashed 1px $compcolor;
-    text-align: left;
+.menu {
+  width: 100%;
+  padding: $baselineheight;
+  border-bottom: dashed 1px $compcolor;
+  text-align: left;
 
-    &__item{
-        display: inline-block;
-        width: auto;
-        font-size: fs(small) * 1.25;
-        font-family: $basefont;
-        padding: $baselineheight;
-        margin-right: $baselineheight;
+  &__item {
+    cursor: pointer;
+
+    &--categories {
+      display: inline-block;
+      width: auto;
+      font-size: fs(small) * 1.25;
+      font-family: $basefont;
+      padding: $baselineheight;
+      margin-right: $baselineheight;
+      
+      input{
         background-color: transparent;
-        cursor: pointer;
-        border-radius: 20px;
-        
-        input{
-            padding: 5px;
-            background-color: transparent;
-        }
+
+      }
     }
+
+    &--all,
+    &--complete,
+    &--priority{
+      background-color: $white;
+      font-size: fs(small);
+      font-family: $basefont;
+      margin-right: $baselineheight;
+    }
+
+  }
 }

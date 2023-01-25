@@ -1,18 +1,18 @@
 export const catNotRep = (notes = []) => {
   
   // creacion de categorias
-  const categoriesColor = [];
+  const categoriesItem= [];
   // creacion de array categorias
   notes.forEach(note => {
-    categoriesColor.push(note.category);
+    categoriesItem.push(note.category);
   });
 
   //console.log(categoriesColor);
 
   // Eliminalos los repetidos categorias
-  const noRepCat = new Set(categoriesColor);
-  const newCategoriesColor = [...noRepCat];
+  //const noRepCat = new Set(categoriesItem);
+  //const newCategories = [...noRepCat];
   //console.log(newCategoriesColor);
 
-  return newCategoriesColor;
+  return categoriesItem;
 };

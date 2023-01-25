@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { differenceInSeconds, addHours } from "date-fns";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 import Swall from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -36,9 +36,10 @@ const initialForm = {
   start: new Date(),
   end: addHours(new Date(), 2),
   category: "",
-  color: "#8000FF",
+  color: "#FF0000",
   priority: "Sin prioridad",
-  stateNote: true
+  stateNote: true,
+  complete: false
 };
 
 // options - select
@@ -47,31 +48,63 @@ const options = ["Alta", "Media", "Baja"];
 const colors = [
   {
     id: 1,
-    color: "#BBBB20"
+    color: "#FF0000",
+    name: "Rojo",
+    class: "rojo"
   },
   {
     id: 2,
-    color: "#00FF80"
+    color: "#00FF00",
+    name: "Verde",
+    class: "verde"
   },
   {
     id: 3,
-    color: "#8000FF"
+    color: "#0000FF",
+    name: "Azul",
+    class: "azul"
   },
   {
     id: 4,
-    color: "#FF8000"
+    color: "#00FFFF",
+    name: "Cyan",
+    class: "cyan"
   },
   {
     id: 5,
-    color: "#800080"
+    color: "#FF00FF",
+    name: "Magenta",
+    class: "magenta"
   },
   {
     id: 6,
-    color: "#FF0000"
+    color: "#FFFF00",
+    name: "Amarillo",
+    class: "amarillo"
   },
   {
     id: 7,
-    color: "#FF00FF"
+    color: "#FF8000",
+    name: "Naranja",
+    class: "naranja"
+  },
+  {
+    id: 8,
+    color: "#800000",
+    name: "Marrón",
+    class: "marron"
+  },
+  {
+    id: 9,
+    color: "#00FF80",
+    name: "Turquesa",
+    class: "turquesa"
+  },
+  {
+    id: 10,
+    color: "#BBBB20",
+    name: "Oro",
+    class: "oro"
   }
 ];
 
@@ -97,24 +130,23 @@ export const ModalNotes = () => {
   //console.log(inputOpt);
   // form submmited
   const [formSubmitted, setFormSubmitted] = useState(false);
-
   // bloquear input color / MOdalNotes
   const [checkInputColor, setCheckInputColor] = useState(false);
   //console.log(checkInputColor);
-  
+
   // introduce nuevas categorias en el store sin repeticion - MenuCat
-  const inCategories = catNotRep(notes);
+  //const inCategories = catNotRep(notes);
   //console.log(inCategories);
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(onCat(inCategories));
-  }, [notes]);
+  }, [notes]);*/
 
   useEffect(() => {
     notes.map(note => {
-      inCategories.map(cat => {
+      categories.map(cat => {
         if (note.category === cat) {
           setCheckInputColor(true);
-          formValues.color = note.color
+          formValues.color = note.color;
         } else {
           setCheckInputColor(false);
         }
@@ -175,20 +207,21 @@ export const ModalNotes = () => {
     setInputOpt(e.target.value);
     setCheckInputColor(true);
     // cambia color segun el select
-    categories.map( cat => {
-      if(inputOpt === cat){
+    categories.map(cat => {
+      if (inputOpt === cat) {
         formValues.category = inputOpt;
-        setFormValues({...formValues, cat});
+        setFormValues({ ...formValues, cat });
       }
     });
-    notes.map( note => {
-      if(inputOpt === note.category){
+    // Hay que modificar
+    notes.map(note => {
+      if (inputOpt === note.category) {
         const updateColor = note.color;
         formValues.color = updateColor;
         //console.log({updateColor});
-        setFormValues({...formValues, updateColor});
+        setFormValues({ ...formValues, updateColor });
       }
-    })
+    });
   };
 
   const onSubmit = e => {
@@ -229,11 +262,12 @@ export const ModalNotes = () => {
 
       <form onSubmit={onSubmit} className="modal__window--form">
         <div className="row">
+         
           <div className="modal__window--project">
             <label>Proyecto:{formValues.category}</label>
             <input
               type="text"
-              //style={{ backgroundColor: color }}
+              //style={{ backgroundColor: formValues.color }}
               className="modal__window--project-input"
               placeholder="Proyecto"
               name="category"
@@ -248,13 +282,18 @@ export const ModalNotes = () => {
                 id="idCheck"
                 className="modal__window--project-checkbox"
                 onClick={changeChecking}
+                style={{ display: checkInputColor ? "" : "none" }}
               >
-                Nuevo proyecto
+                {!format ? (
+                  <span> Nuevo Proyecto</span>
+                ) : (
+                  <span> Desbloquear</span>
+                )}
               </button>
             </div>
           </div>
           <div className="modal__window--project" onChange={changeInputOpt}>
-            <label htmlFor="">Select project</label>
+            <label>Select project</label>
             <select
               name="category"
               className="modal__window--project-select"
@@ -262,12 +301,12 @@ export const ModalNotes = () => {
               value={formValues.category}
             >
               <option>Select project</option>
-              { (categories) &&
+              {categories &&
                 categories.map(cat => (
-                <option key={uuidv4()} value={cat}>
-                  {cat}
-                </option>
-              ))}
+                  <option key={uuidv4()} value={cat}>
+                    {cat}
+                  </option>
+                ))}
             </select>
           </div>
           <div className="modal__window--color">
@@ -279,10 +318,10 @@ export const ModalNotes = () => {
               style={{ backgroundColor: formValues.color }}
               disabled={checkInputColor ? "disabled" : null}
             >
-              <option>{formValues.color}</option>
+              <option>Selecciona color</option>
               {colors.map(col => (
-                <option key={col.id} value={col.color}>
-                  {col.color}
+                <option key={col.id} value={col.color} className={col.class}>
+                  {col.name}
                 </option>
               ))}
             </select>

@@ -107,7 +107,7 @@
     }
   }
 
-  &--date-picker{
+  &--date-picker {
     width: 50%;
     padding: $baselineheight;
     margin-top: $baselineheight;
@@ -141,15 +141,28 @@
     text-align: right;
     margin-top: $baselineheight;
     padding: $baselineheight;
-    border-radius: 5px;
     font-family: $basefont;
     font-size: fs(small) * 1.1;
+
+    //----
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    border-radius: 12px;
+    transition: all 0.25s ease;
 
     option {
       font-family: $basefont;
       font-size: fs(small) * 1.1;
     }
+
+    /* reset*/
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
+
 
   &--btn {
     margin-top: $gutterwidth * 2;
@@ -168,7 +181,7 @@
     }
 
     &:hover {
-      opacity: .9;
+      opacity: 0.9;
       transition: opacity 0.5s ease-in-out;
     }
   }

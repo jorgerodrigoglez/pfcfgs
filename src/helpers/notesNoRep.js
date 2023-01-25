@@ -4,8 +4,10 @@ export const notesNoRep = (notes = []) => {
   let newNoteCat = [];
 
   notes.map(note => {
-    note.category;
-    note.color;
+    if(note.category){
+      note.category;
+      note.color;
+    }
 
     let newNote = {
       cat: note.category,

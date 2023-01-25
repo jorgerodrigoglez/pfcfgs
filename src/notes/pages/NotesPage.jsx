@@ -1,9 +1,10 @@
-//import { useState } from 'react';
+//import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import { ModalNotes, NotePage } from "../components";
 import { useUiStore, useNotesStore } from "../../hooks";
 import { NothingSelected } from "./NothingSelected";
-import { onFilterNoteCat, onListAllNotes } from "../../store";
+import { onFilterNoteCat, onListAllNotes, onListComplete } from "../../store";
 import { MenuCat } from "../../notes/components";
 
 export const NotesPage = () => {
@@ -14,6 +15,7 @@ export const NotesPage = () => {
   // hooks
   const { openModal } = useUiStore();
   const { notes } = useNotesStore();
+  //console.log(notes);
 
   const onOpenModal = () => {
     openModal();
@@ -36,7 +38,7 @@ export const NotesPage = () => {
 
   return (
     <>
-      <ModalNotes/>
+      <ModalNotes />
 
       <MenuCat
         filterNotesCat={filterNotesCat}
@@ -47,11 +49,11 @@ export const NotesPage = () => {
         <NothingSelected />
       ) : (
         notes.length > 0 && (
-          <div className="note">
-            {notes.map(note => (
-              <NotePage {...note} onOpenModal={onOpenModal} key={note._id} />
+          <ul className="note">
+            { notes.map(note => (
+                <NotePage {...note} note={note} key={uuidv4()} onOpenModal={onOpenModal}  />
             ))}
-          </div>
+          </ul>
         )
       )}
       <button className="btn-plus" onClick={onOpenModal}>

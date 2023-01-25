@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 import { addHours } from "date-fns";
 
 const tempNotes = {
-  _id: new Date().getTime(),
+  _id: 0,
   title: "",
   description: "",
   start: new Date(),
   end: addHours(new Date(), 2),
   category: "",
-  color: "#8000FF",
+  color: "#FF0000",
   priority: "Sin prioridad",
-  stateNote: true
+  stateNote: true,
+  complete: false
 };
 
 export const notesSlice = createSlice({
@@ -20,7 +22,7 @@ export const notesSlice = createSlice({
       //tempNotes
     ],
     activeNote: null,
-    categories: [],
+    categories: []
     //colors: []
   },
   reducers: {
@@ -78,10 +80,33 @@ export const notesSlice = createSlice({
         });
       }
     },
-    onListAllNotes: (state, { payload }) => {
+    onListAllNotes: state => {
       state.notes = state.notes.map(note => {
         note.stateNote = true;
         return note;
+      });
+    },
+    onComplete: (state, { payload }) => {
+      //console.log(payload);
+      state.notes = state.notes.map(note => {
+        if (note._id === payload._id) {
+          note.complete = payload.complete;
+          return note;
+        } else {
+          return note;
+        }
+      });
+    },
+    onListComplete: (state, { payload }) => {
+      //console.log(payload);
+      state.notes = state.notes.map(note => {
+        if (note.complete === payload) {
+          note.stateNote = false;
+          return note;
+        } else {
+          note.stateNote = true;
+          return note;
+        }
       });
     }
   }
@@ -93,7 +118,9 @@ export const {
   onUpdateNote,
   onDeleteNote,
   onCat,
-  onColor,
+  //onColor,
   onFilterNoteCat,
-  onListAllNotes
+  onListAllNotes,
+  onComplete,
+  onListComplete
 } = notesSlice.actions;
