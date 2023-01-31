@@ -1,32 +1,41 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { notesNoRep } from "../../helpers";
+import { notesNoRep, colorsNotRep, catNotRep } from "../../helpers";
 //import { onCat } from "../../store";
 import { useNotesStore } from "../../hooks";
-import { onListComplete } from "../../store";
+import {
+  onListComplete,
+  onColor,
+  onCat,
+  onListCompleteCat,
+  onPriorityNotes
+} from "../../store";
 
-export const MenuCat = ({ filterNotesCat, allListCategories }) => {
-  // cambiar el boton de completadas
-  const [btnChangeTasks, setBtnChangeTasks] = useState(false);
+export const MenuCat = ({ filterNotesCat, allListCategories, colorCat }) => {
+  //console.log(colorCat);
   // redux
   const dispatch = useDispatch();
+  const { colorsPriority } = useSelector(state => state.notes);
   // hook
-  const { notes, categories } = useNotesStore();
+  const { notes, categories, colors } = useNotesStore();
+  // cambiar el boton de completadas
+  const [btnChangeTasks, setBtnChangeTasks] = useState(false);
 
   // helpers : crea el array de categorias y elimina elementos repetidos
-  //console.log(colorItemCat);
-  //const inCategories = catNotRep(notes);
+  const inCategories = catNotRep(notes);
+
+  //console.log(inCategories);
+  // introduce nuevas categorias en el store sin repeticion
+  useEffect(() => {
+    dispatch(onCat(inCategories));
+  }, [notes]);
 
   // color categorias
-  //const inColors = colorCat(notes);
-
-  // introduce nuevas categorias en el store sin repeticion
-  /*useEffect(() => {
-    dispatch(onCat(inCategories));
-  }, [notes]);*/
+  /*const inColors = colorsNotRep(notes);
+  //console.log(inColors);
   // introduce nuevos colores en el store sin repeticion
-  /*useEffect(() => {
+  useEffect(() => {
     //setColorsCat(inColors);
     dispatch(onColor(inColors));
   }, [notes]);*/
@@ -35,7 +44,7 @@ export const MenuCat = ({ filterNotesCat, allListCategories }) => {
   let categoriesMap = notesNoRep(notes);
 
   //console.log(categoriesMap);
-
+  // elimina las notas repetidas
   let deleteRep = categoriesMap.filter((value1, index, array) => {
     //Podríamos omitir el return y hacerlo en una línea, pero se vería menos legible
     return (
@@ -51,43 +60,70 @@ export const MenuCat = ({ filterNotesCat, allListCategories }) => {
     e.preventDefault();
     setBtnChangeTasks(!btnChangeTasks);
 
+    // selecciona completadas y no de todas las categorias
     if (btnChangeTasks) {
       dispatch(onListComplete(btnChangeTasks));
     } else {
       dispatch(onListComplete(btnChangeTasks));
     }
+
+    // selecciona las notas completadas y no completadas de una categoria
+    notes.map(({ color }) => {
+      //console.log(color,colorCat);
+      if (color === colorCat) {
+        let objectFilter = {
+          colorCat: color,
+          stateBtn: btnChangeTasks
+        };
+        //console.log(objectFilter);
+        dispatch(onListCompleteCat(objectFilter));
+      }
+    });
+  };
+
+  // listar notas por prioridad
+  const setPriority = e => {
+    e.preventDefault();
+    //console.log(colorsPriority);
+    dispatch(onPriorityNotes());
   };
 
   return (
     <>
       <div className="menu">
         <div className="menu__item">
-          <button onClick={allListCategories} className="menu__item--all">
+          <button
+            style={{ backgroundColor: colorCat }}
+            onClick={allListCategories}
+            className="menu__item--all"
+          >
             All
           </button>
-
-          <input
-            type="button"
-            onClick={showTasksComplete}
-            className="menu__item--complete"
-            //value={btnChangeTasks ? "No Completadas" : "Completadas"}
-            value="No completadas"
-          />
-
-          <input
-            type="button"
-            onClick={showTasksComplete}
-            className="menu__item--complete"
-            //value={btnChangeTasks ? "No Completadas" : "Completadas"}
-            value="Completadas"
-          />
 
           <input
             type="button"
             className="menu__item--priority"
             //value={btnChangeTasks ? "No Completadas" : "Completadas"}
             value="Prioridad"
+            onClick={setPriority}
           />
+          <input
+            style={{ backgroundColor: colorCat }}
+            type="button"
+            onClick={showTasksComplete}
+            className="menu__item--complete"
+            value={btnChangeTasks ? "No Completadas" : "Completadas"}
+            //disabled={colorCat ? null : "disabled"}
+          />
+
+          {/* <input
+            style={{ backgroundColor: colorCat }}
+            type="button"
+            onClick={showTasksComplete}
+            className="menu__item--complete"
+            value={btnChangeTasks ? "No Completadas" : "Completadas"}
+            disabled={colorCat ? null : "disabled"}
+          /> */}
 
           {categories &&
             categories.length > 0 &&

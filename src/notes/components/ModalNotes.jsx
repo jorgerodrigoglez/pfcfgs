@@ -12,8 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Modal from "react-modal";
 import { useUiStore, useNotesStore } from "../../hooks";
-import { onCat } from "../../store";
-import { catNotRep } from "../../helpers";
+//import { onCat } from "../../store";
+//import { catNotRep } from "../../helpers";
 
 registerLocale("es", es);
 
@@ -37,13 +37,12 @@ const initialForm = {
   end: addHours(new Date(), 2),
   category: "",
   color: "#FF0000",
-  priority: "Sin prioridad",
+  priority: 0,
+  priorityColor: "#FFF",
   stateNote: true,
   complete: false
 };
 
-// options - select
-const options = ["Alta", "Media", "Baja"];
 // options --color
 const colors = [
   {
@@ -109,10 +108,11 @@ const colors = [
 ];
 
 export const ModalNotes = () => {
+
   // redux
   const dispatch = useDispatch();
-  const { activeNote, categories } = useSelector(state => state.notes);
-  //console.log({activeNote});
+  const { activeNote, categories, colorsPriority } = useSelector(state => state.notes);
+  //console.log({colorsPriority});
 
   const { format } = useSelector(state => state.ui);
   //console.log( format );
@@ -125,6 +125,7 @@ export const ModalNotes = () => {
   //const { color } = formValues;
   //console.log(formValues.color);
   //console.log(formValues.category);
+  //console.log(formValues.priority);
 
   const [inputOpt, setInputOpt] = useState("Select project");
   //console.log(inputOpt);
@@ -179,6 +180,12 @@ export const ModalNotes = () => {
   };
 
   const onInputChange = ({ target }) => {
+    // añade color al select de prioridades
+    colorsPriority.map(col => {
+      if(formValues.priorityColor === col){
+        let colPri = col;
+      }
+    })
     // cambia valores del formulario
     setFormValues({
       ...formValues,
@@ -238,8 +245,9 @@ export const ModalNotes = () => {
       );
       return;
     }
-
+    // validaciones
     if (formValues.category.length <= 0) return;
+    if (formValues.priorityColor === '') return;
     //console.log({ formValues });
     // crear arr de datos de formulario en useNotesStore
     startSavingNote(formValues);
@@ -344,15 +352,16 @@ export const ModalNotes = () => {
           <div className="modal__window--priority">
             <label>Prioridad:</label>
             <select
-              name="priority"
+              name="priorityColor"
               className="modal__window--priority-input"
               onChange={onInputChange}
-              value={formValues.priority}
+              value={formValues.priorityColor}
+              style={{ backgroundColor: formValues.priorityColor}}
             >
-              <option>Sin prioridad</option>
-              {options.map(opt => (
-                <option key={opt} value={opt}>
-                  {opt}
+              <option>--Selecciona--</option>
+              {colorsPriority.map(opt => (
+                <option key={opt.id} value={opt.color} className={opt.class} >
+                  {opt.text}
                 </option>
               ))}
             </select>

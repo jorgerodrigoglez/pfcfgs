@@ -10,9 +10,9 @@ export const catNotRep = (notes = []) => {
   //console.log(categoriesColor);
 
   // Eliminalos los repetidos categorias
-  //const noRepCat = new Set(categoriesItem);
-  //const newCategories = [...noRepCat];
+  const noRepCat = new Set(categoriesItem);
+  const newCategories = [...noRepCat];
   //console.log(newCategoriesColor);
 
-  return categoriesItem;
+  return newCategories;
 };

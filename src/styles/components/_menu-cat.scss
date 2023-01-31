@@ -14,21 +14,44 @@
       font-family: $basefont;
       padding: $baselineheight;
       margin-right: $baselineheight;
-      
-      input{
-        background-color: transparent;
 
+      input[type="button"] {
+        background-color: transparent;
       }
+
+    }
+    
+    input[type="checkbox"] {
+      margin-left: 5px;
+      height: 15px;
+      width: 15px;
+      background-color: transparent;
+      border: solid 1px #000;
+      border-radius: 50%;
+    }
+    i.fa-sharp {
+      margin-left: 5px;
+      //background-color: #fff;
+    }
+
+    &--complete{
+      width: 150px;
+      background-color: transparent;
+      padding: $baselineheight;
+      font-size: fs(small) * 1.1;
+      font-family: $altfont;
+      margin-right: $baselineheight;
+      border: solid 1px $black;
+      border-radius: $radius;
     }
 
     &--all,
-    &--complete,
-    &--priority{
+    &--priority {
+      padding: $baselineheight;
       background-color: $white;
-      font-size: fs(small);
+      font-size: fs(small)*1.1;
       font-family: $basefont;
       margin-right: $baselineheight;
     }
-
   }
 }

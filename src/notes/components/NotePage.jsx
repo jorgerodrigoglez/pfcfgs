@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+//import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { onSetActiveNote, onEditFormat, onComplete } from "../../store";
 
 import { format } from "date-fns";
@@ -13,7 +13,8 @@ export const NotePage = ({
   start,
   end,
   category,
-  priority,
+  //priority,
+  priorityColor,
   color,
   stateNote,
   complete,
@@ -29,6 +30,11 @@ export const NotePage = ({
   //console.log(dateEnd);
 
   // redux
+  const { colorsPriority } = useSelector(state => state.notes);
+  // imprimir el texto de la prioridad la targeta
+  let itemText = colorsPriority.filter(item => priorityColor === item.color);
+  //console.log(itemText[0].text);
+
   const dispatch = useDispatch();
 
   // hook
@@ -43,7 +49,8 @@ export const NotePage = ({
         start,
         end,
         category,
-        priority,
+        //priority,
+        priorityColor,
         color,
         stateNote
       })
@@ -85,14 +92,15 @@ export const NotePage = ({
         <div className="note__item__category">
           <span>{category}</span>
         </div>
-
         <div className="note__item__body">
           <h1 className="note__item__title">{title}</h1>
           <p className="note__item__description">{description}</p>
         </div>
 
         <div className="note__item__priority">
-          <span>Prioridad:</span> {priority}
+          <span style={{ backgroundColor: priorityColor }}>
+            Prioridad:{itemText[0].text}
+          </span>
         </div>
 
         <div className="note__item__date">
