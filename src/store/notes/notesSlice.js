@@ -9,7 +9,7 @@ const tempNotes = {
   start: new Date(),
   end: addHours(new Date(), 2),
   category: "",
-  color: "#FF0000",
+  color: "#FF8000",
   priority: 0,
   priorityColor:"#FFF",
   stateNote: true,
@@ -62,7 +62,7 @@ export const notesSlice = createSlice({
         class: 'urgente'
       },
     ],
-    notesPriorities: [],
+    //notesPriorities: [],
   },
   reducers: {
     onSetActiveNote: (state, { payload }) => {

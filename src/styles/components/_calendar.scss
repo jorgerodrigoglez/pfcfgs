@@ -1,0 +1,63 @@
+.calendar {
+  margin-top: $gutterwidth;
+  padding: $gutterwidth;
+  background-color: #fff;
+}
+
+.rbc-agenda-event-cell div{
+
+  span{
+    font-family: $primary;
+    font-size: fs(x-small);
+    padding: 2px;
+    margin-right: $baselineheight;
+  }
+
+  strong{
+    font-family: $primary;
+    font-size: fs(normal);
+  }
+
+  p{
+    font-family: $primary;
+    font-size: fs(x-small);
+    padding: $baselineheight;
+    font-weight: bold;
+  }
+
+  div{
+    width: 150px;
+    border-radius: 10px;
+  }
+}
+
+.rbc-event-content div {
+
+  span{
+    font-family: $primary;
+    font-size: fs(x-small);
+    padding: 2px;
+    margin-right: $baselineheight;
+    font-weight: lighter;
+  }
+
+  strong{
+    font-family: $primary;
+    font-size: fs(small) * 1.1;
+  }
+
+  p{
+    font-family: $primary;
+    font-size: fs(x-small);
+    padding: 2px;
+    font-weight: bold;
+  }
+
+  div{
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    width: 130px;
+  }
+}
+

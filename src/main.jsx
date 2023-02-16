@@ -6,7 +6,7 @@ import "./styles/styles.scss";
 import { NotesApp } from "./NotesApp";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <NotesApp />
-  </React.StrictMode>
+  // </React.StrictMode>
 );

@@ -19,7 +19,7 @@ export const useNotesStore = () => {
       dispatch(onUpdateNote({ ...note }))
     }else{
       // guardar
-      dispatch(onAddNewNote({ ...note, _id: uuidv4(), complete: false}));
+      dispatch(onAddNewNote({ ...note, _id: uuidv4(), complete: false }) );
     }
   };
 

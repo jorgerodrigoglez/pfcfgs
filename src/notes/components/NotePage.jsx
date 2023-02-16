@@ -13,7 +13,7 @@ export const NotePage = ({
   start,
   end,
   category,
-  //priority,
+  priority,
   priorityColor,
   color,
   stateNote,
@@ -49,10 +49,11 @@ export const NotePage = ({
         start,
         end,
         category,
-        //priority,
+        priority,
         priorityColor,
         color,
-        stateNote
+        stateNote,
+        complete
       })
     );
     // abre el modal

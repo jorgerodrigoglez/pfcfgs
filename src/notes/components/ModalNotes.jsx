@@ -36,7 +36,7 @@ const initialForm = {
   start: new Date(),
   end: addHours(new Date(), 2),
   category: "",
-  color: "#FF0000",
+  color: "#FF8000",
   priority: 0,
   priorityColor: "#FFF",
   stateNote: true,
