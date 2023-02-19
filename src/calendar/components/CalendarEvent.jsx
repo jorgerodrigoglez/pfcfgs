@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 export const CalendarEvent = ({ event }) => {
-  console.log({ event });
+  //console.log({ event });
   const { category, title, description, complete, priorityColor } = event;
 
   // redux - idem que en NotePage

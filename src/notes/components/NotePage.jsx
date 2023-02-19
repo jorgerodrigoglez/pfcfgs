@@ -18,7 +18,9 @@ export const NotePage = ({
   color,
   stateNote,
   complete,
-  onOpenModal
+  onOpenModal,
+  spent,
+  entry
 }) => {
   //console.log({ _id, title, description, start, end, category, priority, color });
   //console.log(state);
@@ -53,7 +55,9 @@ export const NotePage = ({
         priorityColor,
         color,
         stateNote,
-        complete
+        complete,
+        spent,
+        entry
       })
     );
     // abre el modal
@@ -110,6 +114,18 @@ export const NotePage = ({
           </div>
           <div className="note__item__date--end">
             <span>A:</span> {dateEnd}
+          </div>
+        </div>
+
+        <div className="note__item__count">
+          <div className="note__item__count--spent">
+            <span>Gasto:</span><b>{spent}</b>€
+          </div>
+          <div className="note__item__count--entry">
+            <span>Ingreso:</span><b>{entry}</b>€
+          </div>
+          <div className="note__item__count--total">
+            <span>Total:</span><b>{entry-spent}</b>€
           </div>
         </div>
       </div>

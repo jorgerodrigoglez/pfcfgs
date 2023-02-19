@@ -11,10 +11,11 @@ const tempNotes = {
   category: "",
   color: "#FF8000",
   priority: 0,
-  priorityColor:"#FFF",
+  priorityColor: "#FFF",
   stateNote: true,
   complete: false,
-  //check: false
+  spent: 0,
+  entry: 0
 };
 
 export const notesSlice = createSlice({
@@ -29,39 +30,39 @@ export const notesSlice = createSlice({
     colorsPriority: [
       {
         id: 5,
-        color: '#FFF',
-        text: 'Sin prioridad',
-        class: 'sin-prioridad'
+        color: "#FFF",
+        text: "Sin prioridad",
+        class: "sin-prioridad"
       },
       {
         id: 4,
         // cyan
-        color: '#00FFFF',
-        text: 'Baja',
-        class: 'baja'
+        color: "#00FFFF",
+        text: "Baja",
+        class: "baja"
       },
       {
         id: 3,
         // amarillo
-        color: '#FFFF00',
-        text: 'Media',
-        class: 'media'
+        color: "#FFFF00",
+        text: "Media",
+        class: "media"
       },
       {
         id: 2,
         // naranja
-        color: '#FF8000',
-        text: 'Alta',
-        class: 'alta'
+        color: "#FF8000",
+        text: "Alta",
+        class: "alta"
       },
       {
         id: 1,
         // rojo
-        color: '#FF0000',
-        text: 'Urgente',
-        class: 'urgente'
-      },
-    ],
+        color: "#FF0000",
+        text: "Urgente",
+        class: "urgente"
+      }
+    ]
     //notesPriorities: [],
   },
   reducers: {
@@ -151,10 +152,13 @@ export const notesSlice = createSlice({
     },
     onListCompleteCat: (state, { payload }) => {
       //console.log({payload});
-      // Idem que onFilterNoteCat, pero con modificaciones 
+      // Idem que onFilterNoteCat, pero con modificaciones
       // se requiere el noteState, note.complete y el note.color
       state.notes = state.notes.filter(note => {
-        if (note.color === payload.colorCat && note.complete === !payload.stateBtn) {
+        if (
+          note.color === payload.colorCat &&
+          note.complete === !payload.stateBtn
+        ) {
           note.stateNote = true;
           return note;
         } else {
@@ -164,30 +168,29 @@ export const notesSlice = createSlice({
       });
     },
 
-    onPriorityNotes: (state) => {
+    onPriorityNotes: state => {
       //console.log(payload);
-      state.notes.map( note => {
-
-        if(note.priorityColor === '#FF0000'){
+      state.notes.map(note => {
+        if (note.priorityColor === "#FF0000") {
           note.priority = 1;
         }
-        if(note.priorityColor === '#FF8000'){
+        if (note.priorityColor === "#FF8000") {
           note.priority = 2;
         }
-        if(note.priorityColor === '#FFFF00'){
+        if (note.priorityColor === "#FFFF00") {
           note.priority = 3;
         }
-        if(note.priorityColor === '#00FFFF'){
+        if (note.priorityColor === "#00FFFF") {
           note.priority = 4;
         }
-        if(note.priorityColor === '#FFF'){
+        if (note.priorityColor === "#FFF") {
           note.priority = 5;
         }
 
-        state.notes === state.notes.sort((a,b) => a.priority - b.priority);
-        
-      })
+        state.notes === state.notes.sort((a, b) => a.priority - b.priority);
+      });
     },
+
   }
 });
 

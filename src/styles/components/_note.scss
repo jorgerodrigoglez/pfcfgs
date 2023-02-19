@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  
+
   &__item {
     width: 20%;
     height: 40%;
@@ -15,18 +15,18 @@
     margin-right: $gutterwidth;
     //background: $compcolor;
 
-    &__check{
+    &__check {
       text-align: center;
       padding: $baselineheight;
       background-color: #fff;
       cursor: pointer;
 
-      label{
+      label {
         font-family: $basefont;
         font-size: fs(small);
       }
 
-      input{
+      input {
         height: 20px;
         width: 20px;
         background-color: $color-info;
@@ -53,10 +53,10 @@
       margin-left: $baselineheight;
       text-align: left;
       font-size: fs(small);
-      opacity: .7;
+      opacity: 0.7;
     }
 
-    &__title{
+    &__title {
       //@extend %center;
       //width: 60%;
       font-family: $altfont;
@@ -85,7 +85,7 @@
       background-color: $compcolor;
       //border: solid 1px $black;
 
-      span{
+      span {
         font-weight: bold;
       }
     }
@@ -98,21 +98,45 @@
       //background-color: $color-error;
       color: $black;
       border: solid 5px $compcolor;
-      
+
       &--start,
-      &--end{
+      &--end {
         padding: $baselineheight;
         margin-bottom: $baselineheight;
         font-weight: bold;
         border-bottom: dashed 2px $compcolor;
 
-        span{
-            font-weight: lighter;
+        span {
+          font-weight: lighter;
         }
       }
     }
 
-    &__delete{
+    &__count {
+      @extend %center;
+      padding: $baselineheight;
+      display: flex;
+      justify-content: space-around;
+      width: 95%;
+      background-color: $compcolor;
+      &--spent,
+      &--entry{
+        width: 25%;
+        padding: $baselineheight;
+        font-family: $altfont;
+        font-size: fs(x-small);
+        border: dotted 1px $black;
+      }
+      &--total{
+        padding: $baselineheight;
+        font-family: $altfont;
+        font-size: fs(x-small);
+        background-color: $primary;
+
+      }
+    }
+
+    &__delete {
       text-align: right;
       display: flex;
       justify-content: space-between;
@@ -121,25 +145,22 @@
       border-top: solid 3px $primary;
     }
   }
-  
+
   .btn-delete,
-  .btn-edit{
+  .btn-edit {
     width: 30px;
     height: 40px;
     //background-color: $primary;
-    opacity: .7;
+    opacity: 0.7;
 
-    &:hover{
+    &:hover {
       opacity: 1;
     }
 
-    i{
+    i {
       font-size: fs(normal);
-      opacity: .6;
+      opacity: 0.6;
       color: $black;
     }
-
   }
 }
-
-

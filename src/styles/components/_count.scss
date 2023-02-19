@@ -1,0 +1,98 @@
+.count {
+  display: flex;
+  width: 95%;
+  justify-content: flex-start;
+
+  &__project {
+    font-family: $altfont;
+    font-size: fs(big);
+    text-align: center;
+    background-color: $primary;
+    border-bottom: dashed 1px $black;
+  }
+
+  &__list {
+    width: 30%;
+
+    &--card {
+      margin: $baselineheight;
+      border: dotted 1px $black;
+    }
+
+    &--title {
+      padding: $baselineheight;
+      font-family: $altfont;
+      font-size: fs(small) * 1.2;
+    }
+
+    &--description {
+      padding: $baselineheight;
+      font-family: $altfont;
+      font-size: fs(small) * 1.2;
+    }
+
+    &--count {
+      display: flex;
+      width: 95%;
+      justify-content: space-between;
+      background-color: $compcolor;
+      padding: $baselineheight;
+      &-spent,
+      &-entry,
+      &-total {
+        font-family: $altfont;
+        font-size: fs(small);
+      }
+    }
+  }
+}
+
+.total {
+  &__card {
+    display: block;
+    padding: $baselineheight;
+
+    &--project {
+      padding: $baselineheight;
+      font-family: $altfont;
+      font-size: fs(normal);
+    }
+
+    &--task {
+      padding: $baselineheight;
+      padding-left: $gutterwidth;
+      font-family: $altfont;
+      font-size: fs(small) * 1.3;
+      background-color: $compcolor;
+      opacity: .3;
+    }
+
+    &--total {
+      display: flex;
+      justify-content: space-around;
+      padding: $gutterwidth;
+      border: dashed 1px $black;
+      
+      h3{
+        font-family: $altfont;
+        font-size: fs(small) * 1.2;
+      }
+    }
+    &--mytotal{
+      text-align: left;
+      padding: $gutterwidth;
+      font-family: $altfont;
+      font-size: fs(small) * 1.4;
+      border: dashed 1px $black;
+    }
+    &--mytotal-projects{
+      text-align: center;
+      padding: $gutterwidth;
+      font-family: $basefont;
+      font-size: fs(normal) * 1.2;
+      background-color: $compcolor;
+    }
+  }
+}
+
+

@@ -9,7 +9,7 @@ export const NavbarMain = () => {
                     className="navbar__link"
                     to="/notes"
                 >
-                    Notas
+                    Projects
                 </NavLink>
             </li>
             <li>
@@ -17,7 +17,15 @@ export const NavbarMain = () => {
                     className="navbar__link"
                     to="/calendar"
                 >
-                    Calendario
+                    Calendar
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    className="navbar__link"
+                    to="/count"
+                >
+                    Count
                 </NavLink>
             </li>
         </ul>

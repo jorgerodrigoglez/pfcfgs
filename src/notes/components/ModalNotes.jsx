@@ -40,7 +40,9 @@ const initialForm = {
   priority: 0,
   priorityColor: "#FFF",
   stateNote: true,
-  complete: false
+  complete: false,
+  spent: 0,
+  entry: 0
 };
 
 // options --color
@@ -108,10 +110,11 @@ const colors = [
 ];
 
 export const ModalNotes = () => {
-
   // redux
   const dispatch = useDispatch();
-  const { activeNote, categories, colorsPriority } = useSelector(state => state.notes);
+  const { activeNote, categories, colorsPriority } = useSelector(
+    state => state.notes
+  );
   //console.log({colorsPriority});
 
   const { format } = useSelector(state => state.ui);
@@ -182,10 +185,10 @@ export const ModalNotes = () => {
   const onInputChange = ({ target }) => {
     // añade color al select de prioridades
     colorsPriority.map(col => {
-      if(formValues.priorityColor === col){
+      if (formValues.priorityColor === col) {
         let colPri = col;
       }
-    })
+    });
     // cambia valores del formulario
     setFormValues({
       ...formValues,
@@ -247,7 +250,7 @@ export const ModalNotes = () => {
     }
     // validaciones
     if (formValues.category.length <= 0) return;
-    if (formValues.priorityColor === '') return;
+    if (formValues.priorityColor === "") return;
     //console.log({ formValues });
     // crear arr de datos de formulario en useNotesStore
     startSavingNote(formValues);
@@ -270,7 +273,6 @@ export const ModalNotes = () => {
 
       <form onSubmit={onSubmit} className="modal__window--form">
         <div className="row">
-         
           <div className="modal__window--project">
             <label>Proyecto:{formValues.category}</label>
             <input
@@ -356,11 +358,11 @@ export const ModalNotes = () => {
               className="modal__window--priority-input"
               onChange={onInputChange}
               value={formValues.priorityColor}
-              style={{ backgroundColor: formValues.priorityColor}}
+              style={{ backgroundColor: formValues.priorityColor }}
             >
               <option>--Selecciona--</option>
               {colorsPriority.map(opt => (
-                <option key={opt.id} value={opt.color} className={opt.class} >
+                <option key={opt.id} value={opt.color} className={opt.class}>
                   {opt.text}
                 </option>
               ))}
@@ -406,6 +408,33 @@ export const ModalNotes = () => {
               showTimeSelect
               locale="es"
               timeCaption="Hora"
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="modal__window--count">
+            <span className="modal__window--count--label">Gasto:</span>
+            <input
+              type="number"
+              className="modal__window--count-input-spent"
+              placeholder="Gasto"
+              name="spent"
+              autoComplete="off"
+              value={formValues.spent}
+              onChange={onInputChange}
+            />
+          </div>
+          <div className="modal__window--count">
+          <span className="modal__window--count--label">Ingreso:</span>
+            <input
+              type="number"
+              className="modal__window--count-input-spent"
+              placeholder="Ingreso"
+              name="entry"
+              autoComplete="off"
+              value={formValues.entry}
+              onChange={onInputChange}
             />
           </div>
         </div>

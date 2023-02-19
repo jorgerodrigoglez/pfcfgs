@@ -163,6 +163,31 @@
     -moz-appearance: none;
   }
 
+  &--count{
+    padding: $baselineheight;
+    margin-top: $gutterwidth;
+    width: 50%;
+    text-align: center;
+    border-top: dotted 1px $black;
+    border-bottom: dotted 1px $black;
+
+    &--label{
+      padding: $baselineheight;
+      margin-right: $baselineheight;
+      font-family: $altfont;
+      font-size: fs(small);
+      background-color: #fff;
+    }
+
+    &-input-spent,
+    &-input-entry{
+      padding: $baselineheight;
+      width: 50px;
+      border-radius: $radius;
+      border: none;
+    }
+  }
+
 
   &--btn {
     margin-top: $gutterwidth * 2;
